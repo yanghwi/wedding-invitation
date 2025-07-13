@@ -11,6 +11,7 @@
 이 프로젝트가 도움이 되었다면, 개발자에게 커피 한 잔으로 응원해주세요! 여러분의 후원이 더 나은 오픈 소스 프로젝트를 만드는 데 큰 도움이 됩니다.
 
 <img src="qr_for_coffee.png" alt="커피 QR" width="200" />
+
 [☕ 개발자에게 커피 사주기](https://qr.kakaopay.com/Ej8soKM2U)
 
 ## 기능
