@@ -18,6 +18,49 @@ const DateSection = ({ bgColor = 'white' }: DateSectionProps) => {
   
   const [isWeddingPassed, setIsWeddingPassed] = useState(false);
   
+  // 달력 생성 로직
+  const generateCalendar = () => {
+    const { year, month, day } = weddingConfig.date;
+    
+    // 해당 월의 첫째 날과 마지막 날 계산
+    const firstDay = new Date(year, month - 1, 1);
+    const lastDay = new Date(year, month, 0);
+    const startDayOfWeek = firstDay.getDay(); // 0 = 일요일, 1 = 월요일, ...
+    const daysInMonth = lastDay.getDate();
+    
+    const calendarDays = [];
+    
+    // 첫 주의 빈 칸들 추가
+    for (let i = 0; i < startDayOfWeek; i++) {
+      calendarDays.push(<div key={`empty-${i}`}></div>);
+    }
+    
+    // 실제 날짜들 추가
+    for (let date = 1; date <= daysInMonth; date++) {
+      const currentDate = new Date(year, month - 1, date);
+      const dayOfWeek = currentDate.getDay();
+      const isWeddingDay = date === day;
+      
+      let weekendType: string | undefined;
+      if (dayOfWeek === 0) weekendType = 'sun';
+      else if (dayOfWeek === 6) weekendType = 'sat';
+      
+      if (isWeddingDay) {
+        calendarDays.push(
+          <WeddingDay key={date}>{date}</WeddingDay>
+        );
+      } else {
+        calendarDays.push(
+          <Day key={date} $isWeekend={weekendType}>
+            {date}
+          </Day>
+        );
+      }
+    }
+    
+    return calendarDays;
+  };
+  
   useEffect(() => {
     const calculateTimeLeft = () => {
       const weddingDate = new Date(
@@ -73,50 +116,7 @@ const DateSection = ({ bgColor = 'white' }: DateSectionProps) => {
           <DayName>금</DayName>
           <DayName $isWeekend="sat">토</DayName>
           
-          {/* 첫 주 (비어있는 날짜) */}
-          <Day $isWeekend="sun">31</Day>
-          <Day>1</Day>
-          <Day>2</Day>
-          <Day>3</Day>
-          <Day>4</Day>
-          <Day>5</Day>
-          <Day $isWeekend="sat">6</Day>
-          
-          {/* 둘째 주 */}
-          <Day $isWeekend="sun">7</Day>
-          <Day>8</Day>
-          <Day>9</Day>
-          <Day>10</Day>
-          <Day>11</Day>
-          <Day>12</Day>
-          <Day $isWeekend="sat">13</Day>
-          
-          {/* 셋째 주 */}
-          <Day $isWeekend="sun">14</Day>
-          <Day>15</Day>
-          <Day>16</Day>
-          <Day>17</Day>
-          <Day>18</Day>
-          <Day>19</Day>
-          <Day $isWeekend="sat">20</Day>
-          
-          {/* 넷째 주 */}
-          <WeddingDay>21</WeddingDay>
-          <Day>22</Day>
-          <Day>23</Day>
-          <Day>24</Day>
-          <Day>25</Day>
-          <Day>26</Day>
-          <Day $isWeekend="sat">27</Day>
-          
-          {/* 다섯째 주 */}
-          <Day $isWeekend="sun">28</Day>
-          <Day>29</Day>
-          <Day>30</Day>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+          {generateCalendar()}
         </CalendarGrid>
       </CalendarCard>
       

@@ -24,7 +24,7 @@ export const weddingConfig = {
   main: {
     title: "Wedding Invitation",
     image: "/images/ha0h-1fsi-bqt3.jpg",
-    date: "2025년 12월 25일 토요일 12시 30분",
+    date: "2026년 5월 16일 토요일 12시 30분",
     venue: "웨딩홀 이름"
   },
 
@@ -36,12 +36,12 @@ export const weddingConfig = {
 
   // 결혼식 일정
   date: {
-    year: 2025,
-    month: 12,
-    day: 25,
+    year: 2026,
+    month: 5,
+    day: 16,
     hour: 12,
     minute: 30,
-    displayDate: "2025.12.25 SAT PM 12:30",
+    displayDate: "2026.05.16 SAT PM 12:30",
   },
 
   // 장소 정보
