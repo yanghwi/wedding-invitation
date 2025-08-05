@@ -2,7 +2,6 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
 import { weddingConfig } from '../../config/wedding-config';
 
 const watermarkId = weddingConfig.meta._jwk_watermark_id || 'JWK-NonCommercial';
@@ -14,11 +13,6 @@ const MainSection = () => {
       <BackgroundImage 
         src={weddingConfig.main.image}
         alt="웨딩 배경 이미지"
-        fill
-        priority
-        sizes="100vw"
-        quality={90}
-        style={{ objectFit: 'cover', objectPosition: 'center 10%' }}
       />
       <Overlay />
       <MainContent>
@@ -63,7 +57,14 @@ const MainSectionContainer = styled.section`
   }
 `;
 
-const BackgroundImage = styled(Image)`
+const BackgroundImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
   z-index: 0;
 `;
 
