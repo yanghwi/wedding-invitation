@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { weddingConfig } from '../../../src/config/wedding-config';
 
+export const dynamic = 'force-static';
+
 export async function GET() {
   try {
     // 갤러리 폴더 경로

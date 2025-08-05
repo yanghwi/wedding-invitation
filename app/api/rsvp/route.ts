@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { weddingConfig } from '../../../src/config/wedding-config';
 
+export const dynamic = 'force-static';
+
 export async function POST(request: Request) {
   try {
     const data = await request.json();

@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // GitHub Pages 배포를 위한 설정
+  output: 'export',
+  trailingSlash: true,
+  basePath: '',
+  assetPrefix: '',
+  
   compiler: {
     styledComponents: true,
   },
